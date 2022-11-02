@@ -1,7 +1,7 @@
 from flask import Flask, Response, request
 from datetime import datetime
 import json
-from columbia_student_resource import ColumbiaStudentResource
+from columbia_student_resource import NbaPlayerResource
 from flask_cors import CORS
 
 # Create the Flask application object.
@@ -28,10 +28,10 @@ def get_health():
     return result
 
 
-@app.route("/api/students/<uni>", methods=["GET"])
-def get_student_by_uni(uni):
+@app.route("/stats/player/<id>", methods=["GET"])
+def get_student_by_id(id):
 
-    result = ColumbiaStudentResource.get_by_key(uni)
+    result = NbaPlayerResource.get_by_key(id)
 
     if result:
         rsp = Response(json.dumps(result), status=200, content_type="application.json")
