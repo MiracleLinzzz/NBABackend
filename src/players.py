@@ -19,7 +19,7 @@ class NbaPlayerResource:
             user="root",
             password="Aa123456",
             # host='nba-players.cjcgoinyvwrv.us-east-1.rds.amazonaws.com',
-            host='localhost',
+            host='nbaplayers.cjcgoinyvwrv.us-east-1.rds.amazonaws.com',
             cursorclass=pymysql.cursors.DictCursor,
             autocommit=True
         )
@@ -38,7 +38,8 @@ class NbaPlayerResource:
             if result.get(query["SEASON_TYPE"]) == None:
                 result[query["SEASON_TYPE"]] = []
             result[query["SEASON_TYPE"]].append(query)
-        result["CURRENT_TEAM"] = queries[0]["TEAM_ID"]
+        result["CURRENT_TEAM_ID"] = queries[0]["TEAM_ID"]
+        result["CURRENT_TEAM"] = queries[0]["ABBREVIATION"]
 
         # print(result)
 
@@ -53,3 +54,13 @@ class NbaPlayerResource:
         result = cur.fetchall()
 
         return result
+
+    # @staticmethod
+    # def get_team(key):
+    #     sql = "SELECT * FROM NBA_PLAYERS.PLAYER_BASICS order by FIRST_NAME, LAST_NAME;"
+    #     conn = NbaPlayerResource._get_connection()
+    #     cur = conn.cursor()
+    #     cur.execute(sql)
+    #     result = cur.fetchall()
+
+    #     return result
