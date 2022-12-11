@@ -28,7 +28,7 @@ class NbaPlayerResource:
     @staticmethod
     def get_by_key(key):
 
-        sql = "SELECT * FROM NBA_PLAYERS.PLAYER_TEAM_SEASON_STATS where PLAYER_ID=%s order by SEASON DESC;"
+        sql = "SELECT * FROM nba_players.PLAYER_TEAM_SEASON_STATS where PLAYER_ID=%s order by SEASON DESC;"
         conn = NbaPlayerResource._get_connection()
         cur = conn.cursor()
         cur.execute(sql, args=key)
@@ -47,7 +47,7 @@ class NbaPlayerResource:
 
     @staticmethod
     def get_players():
-        sql = "SELECT * FROM NBA_PLAYERS.PLAYER_BASICS order by FIRST_NAME, LAST_NAME;"
+        sql = "SELECT * FROM nba_players.PLAYER_BASICS order by FIRST_NAME, LAST_NAME;"
         conn = NbaPlayerResource._get_connection()
         cur = conn.cursor()
         cur.execute(sql)
@@ -57,7 +57,7 @@ class NbaPlayerResource:
 
     # @staticmethod
     # def get_team(key):
-    #     sql = "SELECT * FROM NBA_PLAYERS.PLAYER_BASICS order by FIRST_NAME, LAST_NAME;"
+    #     sql = "SELECT * FROM nba_players.PLAYER_BASICS order by FIRST_NAME, LAST_NAME;"
     #     conn = NbaPlayerResource._get_connection()
     #     cur = conn.cursor()
     #     cur.execute(sql)
