@@ -5,15 +5,15 @@ from players import NbaPlayerResource
 from flask_cors import CORS
 
 # Create the Flask application object.
-app = Flask(__name__,
-            static_url_path='/',
-            static_folder='static/class-ui/',
-            template_folder='web/templates')
+application = Flask(__name__,
+                    static_url_path='/',
+                    static_folder='static/class-ui/',
+                    template_folder='web/templates')
 
-CORS(app)
+CORS(application)
 
 
-@app.get("/stats/player")
+@application.get("/stats/player")
 def get_player():
     result = NbaPlayerResource.get_players()
     if result:
@@ -35,7 +35,7 @@ def get_player():
     # return result
 
 
-@app.route("/stats/player/<id>", methods=["GET"])
+@application.route("/stats/player/<id>", methods=["GET"])
 def get_student_by_id(id):
 
     result = NbaPlayerResource.get_by_key(id)
@@ -50,4 +50,4 @@ def get_student_by_id(id):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5011)
+    application.run(host="0.0.0.0", port=5011)
