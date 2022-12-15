@@ -38,8 +38,8 @@ class NbaPlayerResource:
             if result.get(query["SEASON_TYPE"]) == None:
                 result[query["SEASON_TYPE"]] = []
             result[query["SEASON_TYPE"]].append(query)
-        result["CURRENT_TEAM_ID"] = queries[0]["TEAM_ID"]
-        result["CURRENT_TEAM"] = queries[0]["ABBREVIATION"]
+        result["CURRENT_TEAM_ID"] = queries[0]["TEAM_ID"] if queries else None
+        result["CURRENT_TEAM"] = queries[0]["ABBREVIATION"] if queries else None
 
         # print(result)
 
